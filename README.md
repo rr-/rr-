@@ -11,10 +11,9 @@ Sometimes I ‰Ŋ ̵¼ĘĄ»»»↔↔4, and that's fine.
 <img src="art/now.svg" height="45" alt="Now">
 
 - **[th06](https://github.com/Cirno-Labs/th06)**: a clean-room matching
-  decompilation of Touhou 6, built and verified on Linux through Wine. 509 of
-  511 functions match the original byte for byte, and it builds a standalone
-  exe that plays the whole game. Took about two days. The last two functions
-  are being weird about it.
+  decompilation of Touhou 6, built and verified on Linux through Wine. All 511
+  functions match the original byte for byte, and it builds a standalone exe
+  that plays the whole game. Took about two days.
 - **[th07](https://github.com/Cirno-Labs/th07)**: same thing, Touhou 7. In
   progress.
 - **[opentouhou](https://github.com/Cirno-Labs/opentouhou)**: where all of this
