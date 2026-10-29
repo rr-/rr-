@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Renders the banners: art/banner.svg from art/src/banner.png, and the
-rotation, art/banners/NN.svg from art/src/banners/NN.png.
+"""Renders the banner rotation, art/banners/NN.svg from art/src/banners/NN.png;
+bad.pink/github/banner.svg serves a random one of them.
 
-The sources are Animagine XL 4.0 and Anima Turbo images, stored at the width
-the effect works at, rendered with their generation seed. The settings below
-are the banners'; change them here to iterate.
+The sources are Anima Turbo images, stored at the width the effect works at,
+rendered with their generation seed. The settings below are the banners';
+change them here to iterate.
 
     python3 tools/banner.py
 """
@@ -16,18 +16,10 @@ from PIL import Image
 import glitch
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SEED = 888237246
-SETTINGS = dict(
-    seed=SEED,
-    lzss_seed=SEED,
-    echo_mode="near",  # echoes only near ink, none over empty paper
-    ramp="vignette",  # echoes grow toward every edge, the middle stays clean
-    ramp_start=0.45,
-    power=1.6,
-)
-
-# How the echoes are laid out over a rotation banner.
+# How the echoes are laid out over a banner; echo_mode "near" keeps them close
+# to the ink, so none float over empty paper.
 VARIANTS = {
+    # echoes grow toward every edge, the middle stays clean
     "vignette": dict(echo_mode="near", ramp="vignette", ramp_start=0.45, power=1.6),
     # echoes ramping in toward the right edge
     "ramp": dict(echo_mode="near", ramp_start=0.35),
@@ -65,7 +57,6 @@ def write(img, out, **settings):
 
 
 def main():
-    write(Image.open(os.path.join(ROOT, "art/src/banner.png")), "art/banner.svg", **SETTINGS)
     os.makedirs(os.path.join(ROOT, "art/banners"), exist_ok=True)
     for name, seed, variant in ROTATION:
         img = Image.open(os.path.join(ROOT, f"art/src/banners/{name}.png"))
