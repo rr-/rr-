@@ -66,11 +66,13 @@ def build(live=False):
                 f.write(forced(svg, theme == "dark"))
     with open(os.path.join(PROFILE, "README.md")) as f:
         body = markdown.markdown(f.read(), extensions=["md_in_html", "fenced_code"])
-    # bad.pink serves a random banner of the rotation; preview a local one
+    # bad.pink serves a random banner of the rotation per theme; preview a local
+    # one, which the theme-forced copies below then show in each column's theme
     banners = sorted(glob.glob(os.path.join(PROFILE, "art", "banners", "*.svg")))
     if banners:
         local = os.path.relpath(random.choice(banners), PROFILE)
-        body = body.replace("https://bad.pink/github/banner.svg", local)
+        body = re.sub(r"<picture>.*?<img src=\"https://bad.pink/github/banner-light.png\"",
+                      f'<img src="{local}"', body, flags=re.S).replace("</picture>", "")
     cols = "".join(
         f'<div class="col {t}"><div class="name">{t} theme</div><article>'
         + body.replace('src="art/', f'src="preview/{t}/art/')

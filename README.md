@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="https://bad.pink/github/banner.svg" width="900" alt="A pink dithered anime woman with long hair blowing in the wind, a huge satellite dish and concrete behind her, cables across the sky, the edges dissolving into echoing Bézier curves and the bottom torn by glitched compression; a different one on every visit">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://bad.pink/github/banner-dark.png">
+    <img src="https://bad.pink/github/banner-light.png" width="900" alt="A pink dithered anime woman with long hair blowing in the wind, a huge satellite dish and concrete behind her, cables across the sky, the edges dissolving into echoing Bézier curves and the bottom torn by glitched compression; a different one on every visit">
+  </picture>
 </p>
 
 I'm Dash. I code and I make images. Usually pretty anime gals.
