@@ -14,6 +14,7 @@ import functools
 import glob
 import http.server
 import os
+import random
 import re
 import threading
 import time
@@ -54,14 +55,22 @@ def build(live=False):
     os.makedirs(HERE, exist_ok=True)
     for theme in ("light", "dark"):
         os.makedirs(os.path.join(HERE, "preview", theme, "art"), exist_ok=True)
-        for path in glob.glob(os.path.join(PROFILE, "art", "*.svg")):
+        os.makedirs(os.path.join(HERE, "preview", theme, "art", "banners"), exist_ok=True)
+        for path in glob.glob(os.path.join(PROFILE, "art", "*.svg")) + glob.glob(
+            os.path.join(PROFILE, "art", "banners", "*.svg")
+        ):
             with open(path) as f:
                 svg = f.read()
-            out = os.path.join(HERE, "preview", theme, "art", os.path.basename(path))
+            out = os.path.join(HERE, "preview", theme, os.path.relpath(path, PROFILE))
             with open(out, "w") as f:
                 f.write(forced(svg, theme == "dark"))
     with open(os.path.join(PROFILE, "README.md")) as f:
         body = markdown.markdown(f.read(), extensions=["md_in_html", "fenced_code"])
+    # bad.pink serves a random banner of the rotation; preview a local one
+    banners = sorted(glob.glob(os.path.join(PROFILE, "art", "banners", "*.svg")))
+    if banners:
+        local = os.path.relpath(random.choice(banners), PROFILE)
+        body = body.replace("https://bad.pink/github/banner.svg", local)
     cols = "".join(
         f'<div class="col {t}"><div class="name">{t} theme</div><article>'
         + body.replace('src="art/', f'src="preview/{t}/art/')
@@ -98,7 +107,7 @@ pre {{ background: #8881; padding: 16px; border-radius: 6px; overflow: auto; fon
 
 
 def sources():
-    paths = [os.path.join(PROFILE, "README.md")] + glob.glob(os.path.join(PROFILE, "art", "*.svg"))
+    paths = [os.path.join(PROFILE, "README.md")] + glob.glob(os.path.join(PROFILE, "art", "**", "*.svg"), recursive=True)
     return {p: os.path.getmtime(p) for p in paths if os.path.exists(p)}
 
 

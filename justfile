@@ -6,6 +6,12 @@ default:
 art:
     cd tools && python3 banner.py && python3 gen.py
 
+# Copy the rotation into bad.pink, which serves a random one at bad.pink/github/banner.svg
+sync dest="../bad.pink/apps/main/github/banners":
+    mkdir -p {{dest}}
+    rm -f {{dest}}/*.svg
+    cp art/banners/*.svg {{dest}}/
+
 # Render the README with both themes into build/preview.html
 preview:
     python3 tools/preview.py
