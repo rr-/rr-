@@ -13,15 +13,16 @@ Sometimes I ‰Ŋ ̵¼ĘĄ»»»↔↔4, and that's fine.
 
 <img src="art/now.svg" height="45" alt="Now">
 
-- **[th06](https://github.com/Cirno-Labs/th06)**: a clean-room matching
-  decompilation of Touhou 6, built and verified on Linux through Wine. All 511
-  functions match the original byte for byte, and it builds a standalone exe
-  that plays the whole game. Took about two days.
-- **[th07](https://github.com/Cirno-Labs/th07)**: same thing, Touhou 7. In
-  progress.
-- **[opentouhou](https://github.com/Cirno-Labs/opentouhou)**: where all of this
-  is going. Native ports of Touhou 6 to 10 on one shared engine, with
-  interpolated rendering and translations you can switch from the menus.
+- **[Touhou Project decompilations](https://github.com/Cirno-Labs)**: because
+  I refuse to run Wine to practice bullet hell.
+  [th06](https://github.com/Cirno-Labs/th06),
+  [th07](https://github.com/Cirno-Labs/th07) and
+  [th08](https://github.com/Cirno-Labs/th08) already compile back into the
+  original .exe, byte for byte. [th09](https://github.com/Cirno-Labs/th09) is
+  close. th10... eventually will. Maybe?
+- **[opentouhou](https://github.com/Cirno-Labs/opentouhou)**: because I like to
+  make software PrETty, and Marisa stole enough code to give some back. Native
+  ports for Linux, macOS and Windows. th06 plays start to finish, th07 is next.
 
 <img src="art/stuff.svg" height="45" alt="Big stuff">
 
